@@ -49,3 +49,12 @@ def test_missing_model_fields_receive_defaults(monkeypatch):
     assert item.customer_name == "Unknown"
     assert item.priority == "normal"
     assert item.summary == "No summary provided"
+
+
+def test_text_signals_guard_weak_model_classification(monkeypatch):
+    payload = '{"customer_name":"Unknown","company":"Unknown","email":"","request_type":"integration","priority":"high","summary":"Lead flow","requested_action":"Build it","confidence":0.8}'
+    monkeypatch.setattr(ai_client.requests, "post", lambda *a, **k: FakeResponse({"response": payload}))
+    item = ai_client.classify_request("Urgent: need API automation, contact ops@example.com")
+    assert item.request_type == "automation"
+    assert item.priority == "urgent"
+    assert item.email == "ops@example.com"

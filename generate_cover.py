@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -28,7 +28,7 @@ def main() -> None:
     line = "#2c4162"
 
     draw.text((70, 60), "AI Business Automation", font=font(66, True), fill=white)
-    draw.text((72, 150), "Local AI • REST API • Excel/CSV", font=font(32), fill=muted)
+    draw.text((72, 150), "Local AI вЂў REST API вЂў Excel/CSV", font=font(32), fill=muted)
 
     steps = ["REQUEST", "LOCAL AI", "VALIDATE", "REST API", "EXCEL/CSV", "RESPONSE"]
     x, y, width, height = 70, 275, 210, 150
@@ -54,7 +54,7 @@ def main() -> None:
         ("LOCAL", "AI by default"),
         ("3", "business scenarios"),
         ("CSV + XLSX", "structured outputs"),
-        ("21", "tests passing"),
+        ("26", "tests passing"),
     ]
     x = 110
     for value, label in metrics:
@@ -63,8 +63,8 @@ def main() -> None:
         draw.text((x, 730), label, font=font(25), fill=muted)
         x += 355
 
-    draw.text((110, 825), "No paid AI API required • graceful fallback • auditable processing", font=font(28, True), fill=white)
-    draw.text((80, 1020), "Python  •  Ollama  •  Requests  •  openpyxl  •  pytest", font=font(29), fill=white)
+    draw.text((110, 825), "No paid AI API required вЂў graceful fallback вЂў auditable processing", font=font(28, True), fill=white)
+    draw.text((80, 1020), "Python  вЂў  Ollama  вЂў  Requests  вЂў  openpyxl  вЂў  pytest", font=font(29), fill=white)
     draw.text((80, 1075), "Built as a reusable foundation for n8n, CRM, email and webhook integrations", font=font(25), fill=muted)
 
     img.save(COVER)
@@ -73,3 +73,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+

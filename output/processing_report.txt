@@ -1,26 +1,26 @@
 AI Business Automation Processing Report
 ========================================
 
-Request ID: 065e312e-13cd-4b30-a4d2-56048b37d678
-Customer: Company Name
-Type: clean and deduplicate csv export
-Priority: high
-API status: demo-local
-Processing status: processed
-Response: Hello Company Name. High priority. We received your request: Request to clean and deduplicate customer CSV export, fix missing columns, prepare an Excel file for the sales team.. Next step: Review request.
-
-Request ID: f4516c0f-3084-4cec-8dae-9e923710da3a
+Request ID: 33890352-d87c-476e-a94a-5747b93acfc3
 Customer: Unknown
-Type: api automation
-Priority: high
+Type: data_cleanup
+Priority: normal
 API status: demo-local
 Processing status: processed
-Response: Hello Unknown. High priority. We received your request: Capture incoming leads with validated email data, remove duplicates, and send qualified leads to CRM.. Next step: Review request.
+Response: Hello Unknown. We received your data cleanup request: Request to clean and deduplicate customer CSV export, fix missing columns.. Next step: Review request.
 
-Request ID: 211c6325-bb5f-47eb-96a7-4ca7cd24c802
+Request ID: af2c80fb-eb69-418f-9f2b-8e42378f15a8
 Customer: Unknown
-Type: urgent
+Type: automation
 Priority: high
 API status: demo-local
 Processing status: processed
-Response: Hello Unknown. High priority. We received your request: No summary provided. Next step: Build a daily management report from several spreadsheets and flag missing or inconsistent values before 9 AM..
+Response: Hello Unknown. High priority. We received your automation request: Capture incoming leads, validate email data, remove duplicates, and send qualified leads to CRM.. Next step: automation.
+
+Request ID: c5d763c9-f1ea-4ed7-b181-f4f5a17e494e
+Customer: User
+Type: reporting
+Priority: urgent
+API status: demo-local
+Processing status: processed
+Response: Hello User. High priority. We received your reporting request: Daily Management Report from Spreadsheets: Flagging Missing or Inconsistent Values Before 9 AM. Next step: build a daily management report from several spreadsheets and flag missing or inconsistent values before 9 AM.

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import asdict, dataclass, fields
 from datetime import datetime, timezone
@@ -48,6 +48,24 @@ def _text(value: Any, default: str) -> str:
     return value if value else default
 
 
+def _normalize_request_type(value: Any) -> str:
+    text = _text(value, "general").lower().replace("-", " ").replace("_", " ")
+    if any(token in text for token in ("clean", "csv", "excel", "deduplic", "data cleanup")):
+        return "data_cleanup"
+    if any(token in text for token in ("automat", "api", "workflow", "lead")):
+        return "automation"
+    if "report" in text:
+        return "reporting"
+    return "general"
+
+
+def _identity(value: Any) -> str:
+    text = _text(value, "Unknown")
+    if text.lower() in {"john doe", "jane doe", "customer name", "company name", "n/a", "none", "unknown"}:
+        return "Unknown"
+    return text
+
+
 def normalize_payload(payload: dict) -> BusinessRequest:
     raw_priority = _text(payload.get("priority"), "normal").lower()
     priority = raw_priority if raw_priority in {"low", "normal", "high", "urgent"} else "normal"
@@ -60,12 +78,15 @@ def normalize_payload(payload: dict) -> BusinessRequest:
     return BusinessRequest(
         request_id=_text(payload.get("request_id"), str(uuid4())),
         received_at=_text(payload.get("received_at"), datetime.now(timezone.utc).isoformat()),
-        customer_name=_text(payload.get("customer_name"), "Unknown"),
-        company=_text(payload.get("company"), "Unknown"),
+        customer_name=_identity(payload.get("customer_name")),
+        company=_identity(payload.get("company")),
         email=str(payload.get("email") or "").strip(),
-        request_type=_text(payload.get("request_type"), "general").lower(),
+        request_type=_normalize_request_type(payload.get("request_type")),
         priority=priority,
         summary=_text(payload.get("summary"), "No summary provided"),
         requested_action=_text(payload.get("requested_action"), "Review request"),
         confidence=confidence,
     )
+
+
+

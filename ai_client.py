@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import re
@@ -56,6 +56,15 @@ def classify_request(
         payload = json.loads(raw)
         if not isinstance(payload, dict):
             raise ValueError("Ollama response is not an object")
-        return normalize_payload(payload)
+        item = normalize_payload(payload)
+        grounded = fallback_parse(text)
+        if item.request_type == "general" and grounded.request_type != "general":
+            item.request_type = grounded.request_type
+        if grounded.priority == "urgent":
+            item.priority = "urgent"
+        if not item.email and grounded.email:
+            item.email = grounded.email
+        return item
     except (requests.RequestException, ValueError, TypeError, json.JSONDecodeError, KeyError):
         return fallback_parse(text)
+

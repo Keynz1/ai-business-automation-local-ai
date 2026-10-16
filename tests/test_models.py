@@ -42,3 +42,16 @@ def test_processed_request_contains_spec_fields():
     assert item.processing_status == "processed"
     assert item.request_id
     assert item.received_at
+
+
+def test_request_type_is_normalized_to_stable_categories():
+    assert normalize_payload({"request_type": "data cleaning"}).request_type == "data_cleanup"
+    assert normalize_payload({"request_type": "API automation"}).request_type == "automation"
+    assert normalize_payload({"request_type": "urgent report"}).request_type == "reporting"
+    assert normalize_payload({"request_type": "something unexpected"}).request_type == "general"
+
+
+def test_common_ai_placeholders_do_not_become_customer_identity():
+    item = normalize_payload({"customer_name": "John Doe", "company": "Company Name"})
+    assert item.customer_name == "Unknown"
+    assert item.company == "Unknown"
