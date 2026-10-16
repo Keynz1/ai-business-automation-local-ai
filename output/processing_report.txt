@@ -1,0 +1,26 @@
+AI Business Automation Processing Report
+========================================
+
+Request ID: 065e312e-13cd-4b30-a4d2-56048b37d678
+Customer: Company Name
+Type: clean and deduplicate csv export
+Priority: high
+API status: demo-local
+Processing status: processed
+Response: Hello Company Name. High priority. We received your request: Request to clean and deduplicate customer CSV export, fix missing columns, prepare an Excel file for the sales team.. Next step: Review request.
+
+Request ID: f4516c0f-3084-4cec-8dae-9e923710da3a
+Customer: Unknown
+Type: api automation
+Priority: high
+API status: demo-local
+Processing status: processed
+Response: Hello Unknown. High priority. We received your request: Capture incoming leads with validated email data, remove duplicates, and send qualified leads to CRM.. Next step: Review request.
+
+Request ID: 211c6325-bb5f-47eb-96a7-4ca7cd24c802
+Customer: Unknown
+Type: urgent
+Priority: high
+API status: demo-local
+Processing status: processed
+Response: Hello Unknown. High priority. We received your request: No summary provided. Next step: Build a daily management report from several spreadsheets and flag missing or inconsistent values before 9 AM..
